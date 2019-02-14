@@ -1,0 +1,46 @@
+type Post {
+  id: ID! @unique
+  token: Int! @unique
+  title: String
+  text: String!
+  image: Image
+  originalPost: Boolean @default(value: "false")
+  user: User
+  replyTo: Post @relation(name: "PostReplies")
+  repliedBy: [Post!]! @relation(name: "PostReplies")
+  thread: Thread!
+  createdAt: DateTime!
+}
+
+type Thread {
+  id: ID! @unique
+  token: Int! @unique
+  posts: [Post!]!
+  archived: Boolean @default(value: "false")
+  board: Board!
+}
+
+type Board {
+  id: ID! @unique
+  code: String! @unique
+  description: String!
+  theme: String
+  threads: [Thread!]
+  createdAt: DateTime!
+}
+
+type Image {
+  id: ID! @unique
+  name: String!
+  size: Int!
+  height: Int!
+  width: Int!
+  createdAt: DateTime!
+}
+
+type User {
+  id: ID! @unique
+  name: String
+  ip: String!
+  createdAt: DateTime!
+}

@@ -1,0 +1,8 @@
+# import * from '../prisma/generated/prisma.graphql'
+
+type Query {
+  board(where: BoardWhereUniqueInput!): Board
+  boards(where: BoardWhereInput, orderBy: BoardOrderByInput): [Board]!
+  threads(where: ThreadWhereInput, orderBy: ThreadOrderByInput, first: Int, last: Int): [Thread]!
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, first: Int, last: Int): [Post]!
+}

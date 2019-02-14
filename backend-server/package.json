@@ -1,0 +1,39 @@
+{
+  "name": "graphql-imageboard-backend",
+  "version": "1.0.0",
+  "description": "Backend server for Imageboard app",
+  "scripts": {
+    "start": "nodemon -e js,graphql -x node src/index.js",
+    "dev": "nodemon -e js,graphql -x node --inspect src/index.js",
+    "deploy": "prisma deploy -e .env"
+  },
+  "author": "jramirezserrato@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jramirezs/graphql-imageboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jramirezs/graphql-imageboard/issues"
+  },
+  "homepage": "https://github.com/jramirezs/graphql-imageboard#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "graphql": "^14.1.1",
+    "graphql-cli": "^3.0.9",
+    "graphql-yoga": "^1.16.9",
+    "prisma": "^1.26.4",
+    "prisma-binding": "^2.1.6"
+  },
+  "devDependencies": {
+    "husky": "^1.3.1",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4",
+    "pretty-quick": "^1.10.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}

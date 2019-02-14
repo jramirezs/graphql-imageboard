@@ -1,0 +1,34 @@
+{
+  "name": "graphql-imageboard-web",
+  "version": "1.0.0",
+  "description": "Web server for Imageboard app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next -p 7777",
+    "build": "next build",
+    "start": "next start",
+    "test": "NODE_ENV=test jest --watch"
+  },
+  "author": "jramirezserrato@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jramirezs/graphql-imageboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jramirezs/graphql-imageboard/issues"
+  },
+  "homepage": "https://github.com/jramirezs/graphql-imageboard#readme",
+  "dependencies": {
+    "@smooth-ui/core-sc": "^9.0.1",
+    "apollo-boost": "^0.1.28",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
+    "next": "^8.0.1",
+    "next-with-apollo": "^3.3.2",
+    "react": "^16.8.1",
+    "react-apollo": "^2.4.1",
+    "react-dom": "^16.8.1",
+    "styled-components": "^4.1.3"
+  }
+}

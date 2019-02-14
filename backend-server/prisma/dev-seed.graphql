@@ -1,0 +1,89 @@
+mutation {
+  board1: createBoard(data: { code: "/p", description: "Programming" }) {
+    id
+  }
+
+  board2: createBoard(data: { code: "/tv", description: "Television" }) {
+    id
+  }
+
+  board3: createBoard(data: { code: "/mu", description: "Music" }) {
+    id
+  }
+
+  board4: createBoard(data: { code: "/sp", description: "Sports" }) {
+    id
+  }
+
+  thread1: createThread(
+    data: {
+      token: 1
+      posts: {
+        create: {
+          token: 1
+          text: "What do you guys think about Westworld?"
+          title: "Westworld",
+          originalPost: true
+        }
+      }
+      board: { connect: { code: "/tv" } }
+    }
+  ) {
+    id
+  }
+
+  thread2: createThread(
+    data: {
+      token: 5
+      posts: {
+        create: {
+          token: 5
+          text: "So, I watched Alita and I thought it was great"
+          originalPost: true
+        }
+      }
+      board: { connect: { code: "/tv" } }
+    }
+  ) {
+    id
+  }
+
+  post1: createPost(
+    data: {
+      token: 2
+      text: "For me it's decent but not great"
+      thread: { connect: { token: 1 } }
+      image: {
+        create: {
+          name: "upload_d99740e3ffd8572d4f415c0c7792ab58.jpg"
+          size: 345
+          height: 1450
+          width: 2000
+        }
+      }
+    }
+  ) {
+    id
+  }
+
+  post2: createPost(
+    data: {
+      token: 3
+      text: "It's alright tbh"
+      thread: { connect: { token: 1 } }
+    }
+  ) {
+    id
+  }
+
+  post3: createPost(
+    data: {
+      token: 4
+      text: "I agree but at the same time don't"
+      thread: { connect: { token: 1 } }
+      replyTo: { connect: { token: 2 } }
+    }
+  ) {
+    id
+  }
+}

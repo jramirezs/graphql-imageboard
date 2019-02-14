@@ -1,0 +1,8 @@
+endpoint: ${env:PRISMA_ENDPOINT}
+datamodel: datamodel.prisma
+seed:
+  import: dev-seed.graphql
+
+hooks:
+  post-deploy:
+    - graphql get-schema -p prisma
