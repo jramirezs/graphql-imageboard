@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Thu Feb 14 2019 22:17:15 GMT+0200 (EET)
+# timestamp: Sun Feb 17 2019 08:07:13 GMT+0200 (EET)
 
 type AggregateBoard {
   count: Int!
@@ -370,6 +370,7 @@ scalar DateTime
 
 type Image implements Node {
   id: ID!
+  tag: String!
   name: String!
   size: Int!
   height: Int!
@@ -388,6 +389,7 @@ type ImageConnection {
 }
 
 input ImageCreateInput {
+  tag: String!
   name: String!
   size: Int!
   height: Int!
@@ -411,6 +413,8 @@ type ImageEdge {
 enum ImageOrderByInput {
   id_ASC
   id_DESC
+  tag_ASC
+  tag_DESC
   name_ASC
   name_DESC
   size_ASC
@@ -427,6 +431,7 @@ enum ImageOrderByInput {
 
 type ImagePreviousValues {
   id: ID!
+  tag: String!
   name: String!
   size: Int!
   height: Int!
@@ -474,6 +479,7 @@ input ImageSubscriptionWhereInput {
 }
 
 input ImageUpdateDataInput {
+  tag: String
   name: String
   size: Int
   height: Int
@@ -481,6 +487,7 @@ input ImageUpdateDataInput {
 }
 
 input ImageUpdateInput {
+  tag: String
   name: String
   size: Int
   height: Int
@@ -488,6 +495,7 @@ input ImageUpdateInput {
 }
 
 input ImageUpdateManyMutationInput {
+  tag: String
   name: String
   size: Int
   height: Int
@@ -557,6 +565,46 @@ input ImageWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  tag: String
+
+  """All values that are not equal to given value."""
+  tag_not: String
+
+  """All values that are contained in given list."""
+  tag_in: [String!]
+
+  """All values that are not contained in given list."""
+  tag_not_in: [String!]
+
+  """All values less than the given value."""
+  tag_lt: String
+
+  """All values less than or equal the given value."""
+  tag_lte: String
+
+  """All values greater than the given value."""
+  tag_gt: String
+
+  """All values greater than or equal the given value."""
+  tag_gte: String
+
+  """All values containing the given string."""
+  tag_contains: String
+
+  """All values not containing the given string."""
+  tag_not_contains: String
+
+  """All values starting with the given string."""
+  tag_starts_with: String
+
+  """All values not starting with the given string."""
+  tag_not_starts_with: String
+
+  """All values ending with the given string."""
+  tag_ends_with: String
+
+  """All values not ending with the given string."""
+  tag_not_ends_with: String
   name: String
 
   """All values that are not equal to given value."""
@@ -763,7 +811,7 @@ type PageInfo {
 
 type Post implements Node {
   id: ID!
-  token: Int!
+  token: String!
   title: String
   text: String!
   image: Image
@@ -786,7 +834,7 @@ type PostConnection {
 }
 
 input PostCreateInput {
-  token: Int!
+  token: String!
   title: String
   text: String!
   originalPost: Boolean
@@ -813,7 +861,7 @@ input PostCreateOneWithoutRepliedByInput {
 }
 
 input PostCreateWithoutRepliedByInput {
-  token: Int!
+  token: String!
   title: String
   text: String!
   originalPost: Boolean
@@ -824,7 +872,7 @@ input PostCreateWithoutRepliedByInput {
 }
 
 input PostCreateWithoutReplyToInput {
-  token: Int!
+  token: String!
   title: String
   text: String!
   originalPost: Boolean
@@ -835,7 +883,7 @@ input PostCreateWithoutReplyToInput {
 }
 
 input PostCreateWithoutThreadInput {
-  token: Int!
+  token: String!
   title: String
   text: String!
   originalPost: Boolean
@@ -873,7 +921,7 @@ enum PostOrderByInput {
 
 type PostPreviousValues {
   id: ID!
-  token: Int!
+  token: String!
   title: String
   text: String!
   originalPost: Boolean
@@ -929,28 +977,46 @@ input PostScalarWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  token: Int
+  token: String
 
   """All values that are not equal to given value."""
-  token_not: Int
+  token_not: String
 
   """All values that are contained in given list."""
-  token_in: [Int!]
+  token_in: [String!]
 
   """All values that are not contained in given list."""
-  token_not_in: [Int!]
+  token_not_in: [String!]
 
   """All values less than the given value."""
-  token_lt: Int
+  token_lt: String
 
   """All values less than or equal the given value."""
-  token_lte: Int
+  token_lte: String
 
   """All values greater than the given value."""
-  token_gt: Int
+  token_gt: String
 
   """All values greater than or equal the given value."""
-  token_gte: Int
+  token_gte: String
+
+  """All values containing the given string."""
+  token_contains: String
+
+  """All values not containing the given string."""
+  token_not_contains: String
+
+  """All values starting with the given string."""
+  token_starts_with: String
+
+  """All values not starting with the given string."""
+  token_not_starts_with: String
+
+  """All values ending with the given string."""
+  token_ends_with: String
+
+  """All values not ending with the given string."""
+  token_not_ends_with: String
   title: String
 
   """All values that are not equal to given value."""
@@ -1099,7 +1165,7 @@ input PostSubscriptionWhereInput {
 }
 
 input PostUpdateInput {
-  token: Int
+  token: String
   title: String
   text: String
   originalPost: Boolean
@@ -1111,14 +1177,14 @@ input PostUpdateInput {
 }
 
 input PostUpdateManyDataInput {
-  token: Int
+  token: String
   title: String
   text: String
   originalPost: Boolean
 }
 
 input PostUpdateManyMutationInput {
-  token: Int
+  token: String
   title: String
   text: String
   originalPost: Boolean
@@ -1163,7 +1229,7 @@ input PostUpdateOneWithoutRepliedByInput {
 }
 
 input PostUpdateWithoutRepliedByDataInput {
-  token: Int
+  token: String
   title: String
   text: String
   originalPost: Boolean
@@ -1174,7 +1240,7 @@ input PostUpdateWithoutRepliedByDataInput {
 }
 
 input PostUpdateWithoutReplyToDataInput {
-  token: Int
+  token: String
   title: String
   text: String
   originalPost: Boolean
@@ -1185,7 +1251,7 @@ input PostUpdateWithoutReplyToDataInput {
 }
 
 input PostUpdateWithoutThreadDataInput {
-  token: Int
+  token: String
   title: String
   text: String
   originalPost: Boolean
@@ -1271,28 +1337,46 @@ input PostWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  token: Int
+  token: String
 
   """All values that are not equal to given value."""
-  token_not: Int
+  token_not: String
 
   """All values that are contained in given list."""
-  token_in: [Int!]
+  token_in: [String!]
 
   """All values that are not contained in given list."""
-  token_not_in: [Int!]
+  token_not_in: [String!]
 
   """All values less than the given value."""
-  token_lt: Int
+  token_lt: String
 
   """All values less than or equal the given value."""
-  token_lte: Int
+  token_lte: String
 
   """All values greater than the given value."""
-  token_gt: Int
+  token_gt: String
 
   """All values greater than or equal the given value."""
-  token_gte: Int
+  token_gte: String
+
+  """All values containing the given string."""
+  token_contains: String
+
+  """All values not containing the given string."""
+  token_not_contains: String
+
+  """All values starting with the given string."""
+  token_starts_with: String
+
+  """All values not starting with the given string."""
+  token_not_starts_with: String
+
+  """All values ending with the given string."""
+  token_ends_with: String
+
+  """All values not ending with the given string."""
+  token_not_ends_with: String
   title: String
 
   """All values that are not equal to given value."""
@@ -1410,7 +1494,7 @@ input PostWhereInput {
 
 input PostWhereUniqueInput {
   id: ID
-  token: Int
+  token: String
 }
 
 enum PrismaDatabase {
@@ -1451,7 +1535,7 @@ type Subscription {
 
 type Thread implements Node {
   id: ID!
-  token: Int!
+  token: String!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   archived: Boolean
   board: Board!
@@ -1468,7 +1552,7 @@ type ThreadConnection {
 }
 
 input ThreadCreateInput {
-  token: Int!
+  token: String!
   archived: Boolean
   posts: PostCreateManyWithoutThreadInput
   board: BoardCreateOneWithoutThreadsInput!
@@ -1485,13 +1569,13 @@ input ThreadCreateOneWithoutPostsInput {
 }
 
 input ThreadCreateWithoutBoardInput {
-  token: Int!
+  token: String!
   archived: Boolean
   posts: PostCreateManyWithoutThreadInput
 }
 
 input ThreadCreateWithoutPostsInput {
-  token: Int!
+  token: String!
   archived: Boolean
   board: BoardCreateOneWithoutThreadsInput!
 }
@@ -1520,7 +1604,7 @@ enum ThreadOrderByInput {
 
 type ThreadPreviousValues {
   id: ID!
-  token: Int!
+  token: String!
   archived: Boolean
 }
 
@@ -1573,28 +1657,46 @@ input ThreadScalarWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  token: Int
+  token: String
 
   """All values that are not equal to given value."""
-  token_not: Int
+  token_not: String
 
   """All values that are contained in given list."""
-  token_in: [Int!]
+  token_in: [String!]
 
   """All values that are not contained in given list."""
-  token_not_in: [Int!]
+  token_not_in: [String!]
 
   """All values less than the given value."""
-  token_lt: Int
+  token_lt: String
 
   """All values less than or equal the given value."""
-  token_lte: Int
+  token_lte: String
 
   """All values greater than the given value."""
-  token_gt: Int
+  token_gt: String
 
   """All values greater than or equal the given value."""
-  token_gte: Int
+  token_gte: String
+
+  """All values containing the given string."""
+  token_contains: String
+
+  """All values not containing the given string."""
+  token_not_contains: String
+
+  """All values starting with the given string."""
+  token_starts_with: String
+
+  """All values not starting with the given string."""
+  token_not_starts_with: String
+
+  """All values ending with the given string."""
+  token_ends_with: String
+
+  """All values not ending with the given string."""
+  token_not_ends_with: String
   archived: Boolean
 
   """All values that are not equal to given value."""
@@ -1641,19 +1743,19 @@ input ThreadSubscriptionWhereInput {
 }
 
 input ThreadUpdateInput {
-  token: Int
+  token: String
   archived: Boolean
   posts: PostUpdateManyWithoutThreadInput
   board: BoardUpdateOneRequiredWithoutThreadsInput
 }
 
 input ThreadUpdateManyDataInput {
-  token: Int
+  token: String
   archived: Boolean
 }
 
 input ThreadUpdateManyMutationInput {
-  token: Int
+  token: String
   archived: Boolean
 }
 
@@ -1682,13 +1784,13 @@ input ThreadUpdateOneRequiredWithoutPostsInput {
 }
 
 input ThreadUpdateWithoutBoardDataInput {
-  token: Int
+  token: String
   archived: Boolean
   posts: PostUpdateManyWithoutThreadInput
 }
 
 input ThreadUpdateWithoutPostsDataInput {
-  token: Int
+  token: String
   archived: Boolean
   board: BoardUpdateOneRequiredWithoutThreadsInput
 }
@@ -1758,28 +1860,46 @@ input ThreadWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  token: Int
+  token: String
 
   """All values that are not equal to given value."""
-  token_not: Int
+  token_not: String
 
   """All values that are contained in given list."""
-  token_in: [Int!]
+  token_in: [String!]
 
   """All values that are not contained in given list."""
-  token_not_in: [Int!]
+  token_not_in: [String!]
 
   """All values less than the given value."""
-  token_lt: Int
+  token_lt: String
 
   """All values less than or equal the given value."""
-  token_lte: Int
+  token_lte: String
 
   """All values greater than the given value."""
-  token_gt: Int
+  token_gt: String
 
   """All values greater than or equal the given value."""
-  token_gte: Int
+  token_gte: String
+
+  """All values containing the given string."""
+  token_contains: String
+
+  """All values not containing the given string."""
+  token_not_contains: String
+
+  """All values starting with the given string."""
+  token_starts_with: String
+
+  """All values not starting with the given string."""
+  token_not_starts_with: String
+
+  """All values ending with the given string."""
+  token_ends_with: String
+
+  """All values not ending with the given string."""
+  token_not_ends_with: String
   archived: Boolean
 
   """All values that are not equal to given value."""
@@ -1792,7 +1912,7 @@ input ThreadWhereInput {
 
 input ThreadWhereUniqueInput {
   id: ID
-  token: Int
+  token: String
 }
 
 type User implements Node {

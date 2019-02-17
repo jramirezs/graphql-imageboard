@@ -1,14 +1,17 @@
 import React from 'react';
-import { Typography } from '@smooth-ui/core-sc';
+import { Navbar, NavbarBrand, A } from '@bootstrap-styled/v4';
+import Link from 'next/link';
 
-const Navbar = () => {
+const Nav = props => {
   return (
-    <div>
-      <Typography variant="h3" m={1}>
-        Imageboard
-      </Typography>
-    </div>
+    <Navbar color="faded" light>
+      <Link href="/" passHref>
+        <NavbarBrand tag={A}>
+          ImgBoard {props.title && `- ${props.title}`}
+        </NavbarBrand>
+      </Link>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default Nav;

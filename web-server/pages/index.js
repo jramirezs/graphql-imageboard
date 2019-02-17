@@ -1,22 +1,13 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { Grid, Row, Col } from '@smooth-ui/core-sc';
-import gql from 'graphql-tag';
+import { Row, Col } from '@bootstrap-styled/v4';
 
 import Head from '../components/Head';
 import Layout from '../components/Layout';
 
-import BoardBox from '../components/BoardBox';
+import BoardCard from '../components/BoardCard';
 
-const BOARDS_QUERY = gql`
-  query {
-    boards(orderBy: code_ASC) {
-      id
-      code
-      description
-    }
-  }
-`;
+import { GET_BOARDS } from '../data/queries';
 
 class BoardsPage extends React.Component {
   async getInitialProps() {
@@ -27,21 +18,19 @@ class BoardsPage extends React.Component {
       <React.Fragment>
         <Head title="Boards" />
         <Layout>
-          <Query query={BOARDS_QUERY} variables={{ id: this.props.id }}>
+          <Query query={GET_BOARDS} variables={{ id: this.props.id }}>
             {({ data, error, loading }) => {
               if (error) return <p>Error</p>;
               if (loading) return <p>Loading...</p>;
 
               return (
-                <Grid textAlign="center">
-                  <Row>
-                    {data.boards.map(board => (
-                      <Col key={board.id} md={4}>
-                        <BoardBox tag={board.code} title={board.description} />
-                      </Col>
-                    ))}
-                  </Row>
-                </Grid>
+                <Row>
+                  {data.boards.map(board => (
+                    <Col key={board.id} md={4}>
+                      <BoardCard tag={board.code} title={board.description} />
+                    </Col>
+                  ))}
+                </Row>
               );
             }}
           </Query>

@@ -3,6 +3,12 @@
 type Query {
   board(where: BoardWhereUniqueInput!): Board
   boards(where: BoardWhereInput, orderBy: BoardOrderByInput): [Board]!
+  thread(where: ThreadWhereUniqueInput!): Thread
   threads(where: ThreadWhereInput, orderBy: ThreadOrderByInput, first: Int, last: Int): [Thread]!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, first: Int, last: Int): [Post]!
+}
+
+type Mutation {
+  createThread(data: ThreadCreateInput!): Thread!
+  createPost(data: PostCreateInput!): Post!
 }

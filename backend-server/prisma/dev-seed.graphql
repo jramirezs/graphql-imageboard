@@ -17,13 +17,22 @@ mutation {
 
   thread1: createThread(
     data: {
-      token: 1
+      token: "1"
       posts: {
         create: {
-          token: 1
+          token: "1"
           text: "What do you guys think about Westworld?"
-          title: "Westworld",
+          title: "Westworld"
           originalPost: true
+      		image: {
+            create: {
+              tag: "westw_df212.jpg"
+              name: "westw.jpg"
+              size: 345
+              height: 1450
+              width: 2000
+            }
+          }
         }
       }
       board: { connect: { code: "/tv" } }
@@ -34,12 +43,21 @@ mutation {
 
   thread2: createThread(
     data: {
-      token: 5
+      token: "5"
       posts: {
         create: {
-          token: 5
+          token: "5"
           text: "So, I watched Alita and I thought it was great"
           originalPost: true
+          image: {
+            create: {
+              tag: "alita_g645d.jpg"
+              name: "alita.jpg"
+              size: 345
+              height: 1450
+              width: 2000
+            }
+          }
         }
       }
       board: { connect: { code: "/tv" } }
@@ -50,17 +68,9 @@ mutation {
 
   post1: createPost(
     data: {
-      token: 2
+      token: "2"
       text: "For me it's decent but not great"
-      thread: { connect: { token: 1 } }
-      image: {
-        create: {
-          name: "upload_d99740e3ffd8572d4f415c0c7792ab58.jpg"
-          size: 345
-          height: 1450
-          width: 2000
-        }
-      }
+      thread: { connect: { token: "1" } }
     }
   ) {
     id
@@ -68,9 +78,9 @@ mutation {
 
   post2: createPost(
     data: {
-      token: 3
+      token: "3"
       text: "It's alright tbh"
-      thread: { connect: { token: 1 } }
+      thread: { connect: { token: "1" } }
     }
   ) {
     id
@@ -78,10 +88,10 @@ mutation {
 
   post3: createPost(
     data: {
-      token: 4
+      token: "4"
       text: "I agree but at the same time don't"
-      thread: { connect: { token: 1 } }
-      replyTo: { connect: { token: 2 } }
+      thread: { connect: { token: "1" } }
+      replyTo: { connect: { token: "2" } }
     }
   ) {
     id

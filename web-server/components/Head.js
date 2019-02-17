@@ -9,11 +9,11 @@ const Head = props => (
     <meta name="description" content={props.description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="icon" href="/hiring/static/favicon.ico" />
+    <link rel="icon" href="/static/favicon.ico" />
 
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
+      href="https://fonts.googleapis.com/css?family=Nunito"
     />
   </NextHead>
 );

@@ -1,28 +1,43 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { ThemeProvider, Normalize } from '@smooth-ui/core-sc';
+import styled, { createGlobalStyle } from 'styled-components';
+import BootstrapProvider from '@bootstrap-styled/provider';
 
 import Navbar from '../components/Navbar';
 
-const Container = styled.div`
+const Global = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  body {
+    padding: 0;
+    margin: 0;
+  }
+`;
+
+const PageContainer = styled.div`
   padding: 1rem;
 `;
 
 class Layout extends Component {
   render() {
     return (
-      <ThemeProvider
+      <BootstrapProvider
         theme={{
-          fontFamily: '"Source Sans Pro", Helvetica, sans-serif',
-          primary: '#7d4cdb',
+          ['$font-family-sans-serif']: '"Nunito", Helvetica, sans-serif',
+          ['$font-size-base']: '14px',
+          ['$input-border-radius']: '0',
+          ['$primary']: 'red',
         }}
       >
         <>
-          <Normalize />
-          <Navbar />
-          <Container>{this.props.children}</Container>
+          <Global />
+          <Navbar title={this.props.title} />
+          <PageContainer>{this.props.children}</PageContainer>
         </>
-      </ThemeProvider>
+      </BootstrapProvider>
     );
   }
 }
