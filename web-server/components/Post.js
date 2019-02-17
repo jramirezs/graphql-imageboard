@@ -10,6 +10,10 @@ const Container = styled.div`
   padding: 1rem 1.5rem;
   margin-bottom: 1rem;
   background-color: #f7f7f9;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const Post = ({ token, image, text, date, replyTo }) => {

@@ -12,7 +12,7 @@ import ReplyModal from '../components/ReplyModal';
 const Container = styled.div`
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid ${props => props.theme['$gray-lighter']};
 `;
 
 const Thread = ({ board, originalPost, replies, preview }) => {

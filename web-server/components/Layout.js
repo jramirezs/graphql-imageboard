@@ -17,6 +17,11 @@ const Global = createGlobalStyle`
   }
 `;
 
+const Title = styled.div`
+  padding: 1rem;
+  border-bottom: 1px solid ${props => props.theme['$gray-lighter']};
+`;
+
 const PageContainer = styled.div`
   padding: 1rem;
 `;
@@ -29,12 +34,16 @@ class Layout extends Component {
           ['$font-family-sans-serif']: '"Nunito", Helvetica, sans-serif',
           ['$font-size-base']: '14px',
           ['$input-border-radius']: '0',
-          ['$primary']: 'red',
         }}
       >
         <>
           <Global />
-          <Navbar title={this.props.title} />
+          <Navbar />
+          {this.props.title && (
+            <Title>
+              <h2>{this.props.title}</h2>
+            </Title>
+          )}
           <PageContainer>{this.props.children}</PageContainer>
         </>
       </BootstrapProvider>

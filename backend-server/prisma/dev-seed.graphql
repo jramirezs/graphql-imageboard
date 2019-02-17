@@ -1,3 +1,4 @@
+# Write your query or mutation here
 mutation {
   board1: createBoard(data: { code: "/p", description: "Programming" }) {
     id
@@ -24,7 +25,7 @@ mutation {
           text: "What do you guys think about Westworld?"
           title: "Westworld"
           originalPost: true
-      		image: {
+          image: {
             create: {
               tag: "westw_df212.jpg"
               name: "westw.jpg"
@@ -92,6 +93,60 @@ mutation {
       text: "I agree but at the same time don't"
       thread: { connect: { token: "1" } }
       replyTo: { connect: { token: "2" } }
+    }
+  ) {
+    id
+  }
+
+  thread3: createThread(
+    data: {
+      token: "6"
+      posts: {
+        create: {
+          token: "6"
+          text: "Any youtube or souncloud recommendations?"
+          originalPost: true
+          image: {
+            create: {
+              tag: "1550371229434.jpg"
+              name: "1550371229434.jpg"
+              size: 24000
+              height: 320
+              width: 320
+            }
+          }
+        }
+      }
+      board: { connect: { code: "/mu" } }
+    }
+  ) {
+    id
+  }
+
+  post7: createPost(
+    data: {
+      token: "7"
+      text: "There's nothing really good tbh"
+      thread: { connect: { token: "6" } }
+    }
+  ) {
+    id
+  }
+
+  post8: createPost(
+    data: {
+      token: "8"
+      text: "Tough. What about guitar channels?"
+      image: {
+        create: {
+          tag: "b7d.png"
+          name: "intense_thinking.png"
+          size: 56000
+          height: 320
+          width: 320
+        }
+      }
+      thread: { connect: { token: "6" } }
     }
   ) {
     id

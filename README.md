@@ -60,6 +60,7 @@ My desired list of features or infrastructure topics I would like to try with mo
 
 #### Features
 
+- [ ] Overall more unique styling
 - [ ] Theming per board
 - [ ] Reply to post capability (model already implemented)
 - [ ] Progress spinners and bars for page transition
