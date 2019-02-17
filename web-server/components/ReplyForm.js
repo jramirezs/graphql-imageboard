@@ -97,6 +97,7 @@ class ReplyForm extends Component {
                   placeholder="Content"
                   value={this.state.text}
                   onChange={this.handleChange}
+                  required
                   style={{ height: '5rem' }}
                 />
               </FormGroup>

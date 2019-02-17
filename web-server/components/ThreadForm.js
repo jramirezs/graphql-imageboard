@@ -15,6 +15,7 @@ class ThreadForm extends Component {
     title: '',
     text: '',
     image: {},
+    errors: {},
   };
 
   constructor(props) {
@@ -51,7 +52,9 @@ class ThreadForm extends Component {
                 e.preventDefault();
 
                 if (this.fileInput.current.files.length === 0) {
-                  return;
+                  return this.setState({
+                    errors: { file: 'You must provide a file' },
+                  });
                 }
 
                 await this.uploadFile(this.fileInput.current.files[0]);
@@ -85,27 +88,38 @@ class ThreadForm extends Component {
                 <Input
                   id="title"
                   name="title"
-                  placeholder="Title"
                   autoComplete="off"
                   value={this.state.title}
                   onChange={this.handleChange}
                 />
               </FormGroup>
               <FormGroup>
-                <label htmlFor="content">Content</label>
+                <label htmlFor="content">
+                  Content <span className="text-danger">*</span>
+                </label>
                 <Input
                   id="content"
                   type="textarea"
                   name="text"
-                  placeholder="Content"
+                  placeholder="Your post content"
                   value={this.state.text}
                   onChange={this.handleChange}
+                  required
                   style={{ height: '5rem' }}
                 />
               </FormGroup>
-              <FormGroup>
+              <FormGroup color={this.state.errors.file ? 'danger' : null}>
                 <label htmlFor="file">File</label>
-                <input id="file" type="file" name="file" ref={this.fileInput} />
+                <input
+                  id="file"
+                  type="file"
+                  name="file"
+                  className="form-control-file"
+                  ref={this.fileInput}
+                />
+                {this.state.errors.file && (
+                  <div className="text-danger">{this.state.errors.file}</div>
+                )}
               </FormGroup>
               <Button color="primary" type="submit" disabled={loading}>
                 Post
