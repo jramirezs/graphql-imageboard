@@ -82,6 +82,10 @@ class ReplyForm extends Component {
 
                 // Reset file input (uncontrolled)
                 this.fileInput.current.value = '';
+
+                if (this.props.onCreated) {
+                  this.props.onCreated();
+                }
               }}
             >
               <FormGroup>
@@ -93,6 +97,7 @@ class ReplyForm extends Component {
                   placeholder="Content"
                   value={this.state.text}
                   onChange={this.handleChange}
+                  style={{ height: '5rem' }}
                 />
               </FormGroup>
               <FormGroup>

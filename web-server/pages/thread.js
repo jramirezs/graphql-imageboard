@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Button } from '@bootstrap-styled/v4';
 
 import { Query } from 'react-apollo';
 import { GET_THREAD_POSTS } from '../data/queries';
@@ -23,17 +24,22 @@ class ThreadsPage extends React.Component {
           const thread = data.thread;
 
           return (
-            <React.Fragment>
+            <>
               <Head title={thread.board.description} />
               <Layout
                 title={`${thread.board.description} ${thread.board.code}`}
               >
                 <div>
-                  <Link href={`/board?code=${thread.board.code}`}>
-                    <a>Back to board</a>
-                  </Link>
+                  <div className="mb-3">
+                    <Link href={`/board?code=${thread.board.code}`} passHref>
+                      <Button size="sm" outline>
+                        ⬅ Back to board
+                      </Button>
+                    </Link>
+                  </div>
                   <Thread
                     key={thread.token}
+                    board={thread.board}
                     originalPost={thread.originalPost[0]}
                     replies={thread.lastPosts}
                   />
@@ -46,7 +52,7 @@ class ThreadsPage extends React.Component {
                   />
                 </div>
               </Layout>
-            </React.Fragment>
+            </>
           );
         }}
       </Query>

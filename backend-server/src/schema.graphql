@@ -10,5 +10,6 @@ type Query {
 
 type Mutation {
   createThread(data: ThreadCreateInput!): Thread!
+  updateThread(data: ThreadUpdateInput!, where: ThreadWhereUniqueInput!): Thread
   createPost(data: PostCreateInput!): Post!
 }

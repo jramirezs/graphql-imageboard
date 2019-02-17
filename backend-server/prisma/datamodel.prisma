@@ -18,6 +18,8 @@ type Thread {
   posts: [Post!]!
   archived: Boolean @default(value: "false")
   board: Board!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Board {

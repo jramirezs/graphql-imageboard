@@ -7,6 +7,7 @@ import { Button, Img, Row, Col } from '@bootstrap-styled/v4';
 
 import ImageTag from '../components/ImageTag';
 import Post from '../components/Post';
+import ReplyModal from '../components/ReplyModal';
 
 const Container = styled.div`
   margin-bottom: 1rem;
@@ -14,8 +15,9 @@ const Container = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 `;
 
-const Thread = ({ originalPost, replies }) => {
+const Thread = ({ board, originalPost, replies, preview }) => {
   const [expanded, setExpanded] = useState(false);
+  const [isRepliying, setIsRepliying] = useState(false);
 
   const image = originalPost.image;
 
@@ -29,7 +31,7 @@ const Thread = ({ originalPost, replies }) => {
 
   return (
     <Container>
-      <div className="mb-1">
+      <div className="mb-3">
         <ImageTag
           url={fullSizeLink}
           name={image.name}
@@ -39,7 +41,7 @@ const Thread = ({ originalPost, replies }) => {
         />
       </div>
       <Row>
-        <Col md="2">
+        <Col md="3" className="text-center">
           <a
             href={fullSizeLink}
             onClick={e => {
@@ -57,21 +59,33 @@ const Thread = ({ originalPost, replies }) => {
         {expanded && <div className="w-100 mb-3" />}
         <Col>
           <div>
-            <span>
+            <div>
               <strong>
                 {originalPost.title && `${originalPost.title} - `}
               </strong>
               <span>
-                {dayjs(originalPost.createdAt).format('YYYY-MM-DD HH:mm:ss')} -{' '}
+                {dayjs(originalPost.createdAt).format('YYYY-MM-DD HH:mm:ss')}
               </span>
-              <Link href={`/thread?id=${originalPost.token}`}>
-                <a>Thread #{originalPost.token}</a>
-              </Link>
-              <Button size="sm" className="ml-3" outline>
+              {preview && (
+                <Link href={`/thread?id=${originalPost.token}`} passHref>
+                  <Button size="sm" className="ml-3" outline>
+                    See all posts
+                  </Button>
+                </Link>
+              )}
+              <Button
+                size="sm"
+                className="ml-3"
+                outline
+                onClick={() => setIsRepliying(true)}
+              >
                 Reply
               </Button>
-            </span>
-            <p>{originalPost.text}</p>
+              <small className="float-right text-muted">
+                Thread #{originalPost.token}
+              </small>
+            </div>
+            <p className="my-3">{originalPost.text}</p>
           </div>
           <div>
             {replies
@@ -89,6 +103,14 @@ const Thread = ({ originalPost, replies }) => {
           </div>
         </Col>
       </Row>
+      <ReplyModal
+        board={board.code}
+        thread={originalPost.token}
+        isOpen={isRepliying}
+        onClose={() => {
+          setIsRepliying(false);
+        }}
+      />
     </Container>
   );
 };

@@ -87,6 +87,7 @@ class ThreadForm extends Component {
                   name="title"
                   placeholder="Title"
                   autoComplete="off"
+                  value={this.state.title}
                   onChange={this.handleChange}
                 />
               </FormGroup>
@@ -97,7 +98,9 @@ class ThreadForm extends Component {
                   type="textarea"
                   name="text"
                   placeholder="Content"
+                  value={this.state.text}
                   onChange={this.handleChange}
+                  style={{ height: '5rem' }}
                 />
               </FormGroup>
               <FormGroup>

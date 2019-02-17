@@ -13,23 +13,25 @@ class BoardsPage extends React.Component {
     return (
       <Query
         query={GET_BOARD_THREADS}
-        // fetchPolicy="cache-and-network"
+        fetchPolicy="network-only"
         variables={{ code: this.props.query.code }}
       >
         {({ data, error, loading }) => {
           if (error) return <p>Error</p>;
-          if (loading) return <p>Loading...</p>;
+          // if (loading) return <p>Loading...</p>;
 
           const board = data.board;
 
           return (
-            <React.Fragment>
+            <>
               <Head title={board.description} />
               <Layout title={`${board.description} ${board.code}`}>
                 <div>
                   {board.threads.map(({ token, originalPost, lastPosts }) => (
                     <Thread
                       key={token}
+                      preview
+                      board={board}
                       originalPost={originalPost[0]}
                       replies={lastPosts}
                     />
@@ -45,7 +47,7 @@ class BoardsPage extends React.Component {
                   />
                 </div>
               </Layout>
-            </React.Fragment>
+            </>
           );
         }}
       </Query>

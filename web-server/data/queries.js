@@ -16,7 +16,7 @@ export const GET_BOARD_THREADS = gql`
       id
       code
       description
-      threads: threads(orderBy: createdAt_DESC, last: 10) {
+      threads: threads(orderBy: updatedAt_DESC, last: 10) {
         id
         token
         originalPost: posts(where: { originalPost: true }) {

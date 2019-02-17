@@ -15,7 +15,7 @@ class BoardsPage extends React.Component {
   }
   render() {
     return (
-      <React.Fragment>
+      <>
         <Head title="Boards" />
         <Layout>
           <Query query={GET_BOARDS} variables={{ id: this.props.id }}>
@@ -35,7 +35,7 @@ class BoardsPage extends React.Component {
             }}
           </Query>
         </Layout>
-      </React.Fragment>
+      </>
     );
   }
 }

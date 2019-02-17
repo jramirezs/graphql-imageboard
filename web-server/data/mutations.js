@@ -70,5 +70,9 @@ export const CREATE_POST_MUTATION = gql`
     ) {
       id
     }
+
+    updateThread(data: { archived: false }, where: { token: $thread }) {
+      id
+    }
   }
 `;
