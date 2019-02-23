@@ -26,6 +26,9 @@ npm install
 # Initiate Prisma server and Postgres DB
 docker-compose -f ./prisma/docker-compose.yml up -d
 
+# Deploy database schema and initial seed
+npm run deploy
+
 # Run the server
 cp .env.example .env
 npm start # or 'npm run dev' for dev mode
